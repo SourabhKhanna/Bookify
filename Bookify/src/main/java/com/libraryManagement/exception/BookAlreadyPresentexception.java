@@ -1,4 +1,4 @@
-package com.libraryManagement.exception;
+package com.libraryManagement.RuntimeException;
 
 public class BookAlreadyPresentexception extends Exception {
 
