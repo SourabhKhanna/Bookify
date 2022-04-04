@@ -31,7 +31,7 @@ public class BookController {
 	@Autowired
 	private BookRepository bookrepository;
 	@PostMapping("/create-book")
-	public ResponseEntity<Book> createBook(@RequestBody Book book) throws BookAlreadyPresentexception
+	public ResponseEntity<Book> createBook(@RequestBody Book book) 
 	{
 		if(bookrepository.findById(book.getBookId()).isPresent()) {
 			
@@ -42,7 +42,7 @@ public class BookController {
 	}
 	@GetMapping("/book-list")
 	// @RequestMapping(value="create-student",method="POST")
-	public List<Book> getAllBooks() throws BooksAremptyException  {
+	public List<Book> getAllBooks()   {
 		List<Book> list=bookrepository.findAll();	
 		if(list.isEmpty()) 		{
 			throw new BooksAremptyException("Book list is Empty");
@@ -50,7 +50,7 @@ public class BookController {
 		return (list) ;
 	}
 	@GetMapping("/book-list/{bookId}")
-	public ResponseEntity<Book> getBookById(@PathVariable long bookId) throws BookNotFoundException{
+	public ResponseEntity<Book> getBookById(@PathVariable long bookId) {
 		if(!bookrepository.findById(bookId).isPresent())
 			throw new BookNotFoundException("Book Not Found with Id"+bookId);
 			
@@ -64,7 +64,7 @@ public class BookController {
 	}
 
 	@DeleteMapping("/delete-book/{bookId}")
-	public ResponseEntity<Book> deleteBook(@PathVariable long bookId) throws BookNotFoundException {
+	public ResponseEntity<Book> deleteBook(@PathVariable long bookId){
 		if(!bookrepository.findById(bookId).isPresent())
 			throw new BookNotFoundException("Book Not Found with Id"+bookId);
 		 bookrepository.deleteById(bookId);
