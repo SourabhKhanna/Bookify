@@ -1,6 +1,6 @@
 package com.libraryManagement.exception;
 
-public class BooksAremptyException extends Exception {
+public class BooksAremptyException extends RuntimeException {
 
 	public BooksAremptyException(String message) {
 		super(message);
